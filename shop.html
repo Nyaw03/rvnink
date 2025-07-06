@@ -1,0 +1,832 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Document title -->
+    <title>Shop - RVNINK Creative Services</title>
+    <!-- Stylesheets & Fonts -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i%7CRajdhani:400,600,700"
+        rel="stylesheet">
+    <!-- Plugins Stylesheets -->
+    <link rel="stylesheet" href="assets/css/loader/loaders.css">
+    <link rel="stylesheet" href="assets/css/font-awesome/font-awesome.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/aos/aos.css">
+    <link rel="stylesheet" href="assets/css/swiper/swiper.css">
+    <link rel="stylesheet" href="assets/css/lightgallery.min.css">
+    <!-- Template Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Responsive Stylesheet -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <!-- Custom Shop Styles -->
+    <style>
+        .shop-hero {
+            background: linear-gradient(135deg, #E34234, #ff6b6b);
+            padding: 120px 0 80px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shop-hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("assets/images/hero-texture.png") no-repeat center;
+            background-size: cover;
+            opacity: 0.1;
+            animation: textureMove 20s linear infinite;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card.selected {
+            border: 2px solid #E34234;
+            background: linear-gradient(135deg, #fff, #fff8f8);
+        }
+
+        .service-card h4 {
+            color: #26264b;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .service-card .price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #E34234;
+            margin-bottom: 15px;
+        }
+
+        .service-card .description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .service-card .features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .service-card .features li {
+            padding: 5px 0;
+            color: #555;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .service-card .features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #E34234;
+            font-weight: bold;
+        }
+
+        .service-card .select-btn {
+            background: #E34234;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .service-card .select-btn:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+
+        .service-card .select-btn.selected {
+            background: #27ae60;
+        }
+
+        .quote-section {
+            background: #f8f9fa;
+            padding: 60px 0;
+            position: sticky;
+            top: 20px;
+        }
+
+        .quote-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .quote-card h3 {
+            color: #26264b;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .selected-services {
+            margin-bottom: 20px;
+        }
+
+        .selected-service {
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .selected-service .remove-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .total-price {
+            font-size: 28px;
+            font-weight: bold;
+            color: #E34234;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .get-quote-btn {
+            background: #E34234;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .get-quote-btn:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+
+        .get-quote-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px 0;
+        }
+
+        .quantity-btn {
+            background: #E34234;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 0 10px;
+        }
+
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        .service-icon {
+            font-size: 40px;
+            color: #E34234;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        @keyframes textureMove {
+            0% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(-5px) translateY(-3px); }
+            50% { transform: translateX(-3px) translateY(-5px); }
+            75% { transform: translateX(-5px) translateY(-3px); }
+            100% { transform: translateX(0) translateY(0); }
+        }
+
+        .breadcrumb-nav {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 0;
+            margin-bottom: 40px;
+        }
+
+        .breadcrumb-nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .breadcrumb-nav a:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .breadcrumb-nav .separator {
+            color: rgba(255, 255, 255, 0.6);
+            margin: 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loader Start -->
+    <div class="css-loader">
+        <div class="loader-inner line-scale d-flex align-items-center justify-content-center"></div>
+    </div>
+    <!-- Loader End -->
+
+    <!-- Header Start -->
+    <header class="position-absolute w-100">
+        <div class="container">
+            <div class="top-header d-none d-sm-flex justify-content-between align-items-center">
+                <div class="contact">
+                    <a href="tel:+94703393937" class="tel"><i class="fa fa-phone" aria-hidden="true"></i>+94 70 339
+                        3937</a>
+                    <a href="mailto:rvnink.design@google.com"><i class="fa fa-envelope"
+                            aria-hidden="true"></i>rvnink.design@google.com</a>
+                </div>
+                <nav class="d-flex aic">
+                    <a href="#" class="login"><i class="fa fa-user" aria-hidden="true"></i>Login</a>
+                    <ul class="nav social d-none d-md-flex">
+                        <li><a href="https://www.facebook.com/profile.php?id=61575806530578" target="_blank"><i
+                                    class="fa fa-facebook"></i></a></li>
+                        <li><a href="mailto:rvnink.design@google.com"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
+            <nav class="navbar navbar-expand-md navbar-light">
+                <a class="navbar-brand" href="index.html"><img src="assets/images/logo.png" alt="RVNINK"></a>
+                <div class="group d-flex align-items-center">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation"><span
+                            class="navbar-toggler-icon"></span></button>
+                    <a class="login-icon d-sm-none" href="#"><i class="fa fa-user"></i></a>
+                    <a class="cart" href="#"><i class="fa fa-shopping-cart"></i></a>
+                </div>
+                <a class="search-icon d-none d-md-block" href="#"><i class="fa fa-search"></i></a>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://www.behance.net/rvnink" target="_blank">Portfolio</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="shop.html">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://linktr.ee/rvnink" target="_blank">Contact
+                                Us</a></li>
+                    </ul>
+                    <form class="bg-white search-form" method="get" id="searchform">
+                        <div class="input-group">
+                            <input class="field form-control" id="s" name="s" type="text" placeholder="Search">
+                            <span class="input-group-btn">
+                                <input class="submit btn btn-primary" id="searchsubmit" name="submit" type="submit"
+                                    value="Search">
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Shop Hero Start -->
+    <section class="shop-hero">
+        <div class="container">
+            <div class="breadcrumb-nav">
+                <a href="index.html">Home</a>
+                <span class="separator">/</span>
+                <span>Shop</span>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 data-aos="fade-up" data-aos-delay="200">Choose Your Creative Services</h1>
+                    <p data-aos="fade-up" data-aos-delay="400">Select the services you need and get an instant quotation. 
+                    Customize your package to fit your budget and requirements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shop Hero End -->
+
+    <!-- Services Section Start -->
+    <section class="services-section" style="padding: 80px 0;">
+        <div class="container">
+            <div class="row">
+                <!-- Services Column -->
+                <div class="col-lg-8">
+                    <h2 class="mb-4" data-aos="fade-up">Available Services</h2>
+                    
+                    <!-- Graphic Design Services -->
+                    <div class="row">
+                        <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                            <div class="service-card" data-service="logo-design" data-price="15000">
+                                <div class="service-icon">
+                                    <i class="fa fa-paint-brush"></i>
+                                </div>
+                                <h4>Logo Design</h4>
+                                <div class="price">LKR 15,000</div>
+                                <p class="description">Professional logo design with multiple concepts and revisions.</p>
+                                <ul class="features">
+                                    <li>3 Logo Concepts</li>
+                                    <li>3 Revisions</li>
+                                    <li>Source Files</li>
+                                    <li>5 Days Delivery</li>
+                                </ul>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn" onclick="decreaseQuantity('logo-design')">-</button>
+                                    <input type="number" class="quantity-input" id="logo-design-qty" value="0" min="0" max="10">
+                                    <button class="quantity-btn" onclick="increaseQuantity('logo-design')">+</button>
+                                </div>
+                                <button class="select-btn" onclick="toggleService('logo-design')">Add to Quote</button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                            <div class="service-card" data-service="brand-identity" data-price="25000">
+                                <div class="service-icon">
+                                    <i class="fa fa-diamond"></i>
+                                </div>
+                                <h4>Brand Identity</h4>
+                                <div class="price">LKR 25,000</div>
+                                <p class="description">Complete brand identity package including logo, colors, and guidelines.</p>
+                                <ul class="features">
+                                    <li>Logo Design</li>
+                                    <li>Color Palette</li>
+                                    <li>Typography Guide</li>
+                                    <li>Brand Guidelines</li>
+                                </ul>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn" onclick="decreaseQuantity('brand-identity')">-</button>
+                                    <input type="number" class="quantity-input" id="brand-identity-qty" value="0" min="0" max="10">
+                                    <button class="quantity-btn" onclick="increaseQuantity('brand-identity')">+</button>
+                                </div>
+                                <button class="select-btn" onclick="toggleService('brand-identity')">Add to Quote</button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+                            <div class="service-card" data-service="social-media-posts" data-price="5000">
+                                <div class="service-icon">
+                                    <i class="fa fa-share-alt"></i>
+                                </div>
+                                <h4>Social Media Posts</h4>
+                                <div class="price">LKR 5,000</div>
+                                <p class="description">Engaging social media content for all platforms.</p>
+                                <ul class="features">
+                                    <li>5 Posts per Package</li>
+                                    <li>All Platforms</li>
+                                    <li>Custom Graphics</li>
+                                    <li>Caption Writing</li>
+                                </ul>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn" onclick="decreaseQuantity('social-media-posts')">-</button>
+                                    <input type="number" class="quantity-input" id="social-media-posts-qty" value="0" min="0" max="20">
+                                    <button class="quantity-btn" onclick="increaseQuantity('social-media-posts')">+</button>
+                                </div>
+                                <button class="select-btn" onclick="toggleService('social-media-posts')">Add to Quote</button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6" data-aos="fade-up" data-aos-delay="500">
+                            <div class="service-card" data-service="web-design" data-price="35000">
+                                <div class="service-icon">
+                                    <i class="fa fa-desktop"></i>
+                                </div>
+                                <h4>Web Design</h4>
+                                <div class="price">LKR 35,000</div>
+                                <p class="description">Modern, responsive website design and development.</p>
+                                <ul class="features">
+                                    <li>Responsive Design</li>
+                                    <li>5 Pages</li>
+                                    <li>Contact Form</li>
+                                    <li>SEO Optimized</li>
+                                </ul>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn" onclick="decreaseQuantity('web-design')">-</button>
+                                    <input type="number" class="quantity-input" id="web-design-qty" value="0" min="0" max="5">
+                                    <button class="quantity-btn" onclick="increaseQuantity('web-design')">+</button>
+                                </div>
+                                <button class="select-btn" onclick="toggleService('web-design')">Add to Quote</button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6" data-aos="fade-up" data-aos-delay="600">
+                            <div class="service-card" data-service="ui-ux-design" data-price="20000">
+                                <div class="service-icon">
+                                    <i class="fa fa-mobile"></i>
+                                </div>
+                                <h4>UI/UX Design</h4>
+                                <div class="price">LKR 20,000</div>
+                                <p class="description">User interface and experience design for apps and websites.</p>
+                                <ul class="features">
+                                    <li>Wireframes</li>
+                                    <li>Prototypes</li>
+                                    <li>User Testing</li>
+                                    <li>Design System</li>
+                                </ul>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn" onclick="decreaseQuantity('ui-ux-design')">-</button>
+                                    <input type="number" class="quantity-input" id="ui-ux-design-qty" value="0" min="0" max="5">
+                                    <button class="quantity-btn" onclick="increaseQuantity('ui-ux-design')">+</button>
+                                </div>
+                                <button class="select-btn" onclick="toggleService('ui-ux-design')">Add to Quote</button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6" data-aos="fade-up" data-aos-delay="700">
+                            <div class="service-card" data-service="content-creation" data-price="8000">
+                                <div class="service-icon">
+                                    <i class="fa fa-pencil"></i>
+                                </div>
+                                <h4>Content Creation</h4>
+                                <div class="price">LKR 8,000</div>
+                                <p class="description">Creative content writing and visual content creation.</p>
+                                <ul class="features">
+                                    <li>Blog Posts</li>
+                                    <li>Marketing Copy</li>
+                                    <li>Infographics</li>
+                                    <li>Email Campaigns</li>
+                                </ul>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn" onclick="decreaseQuantity('content-creation')">-</button>
+                                    <input type="number" class="quantity-input" id="content-creation-qty" value="0" min="0" max="15">
+                                    <button class="quantity-btn" onclick="increaseQuantity('content-creation')">+</button>
+                                </div>
+                                <button class="select-btn" onclick="toggleService('content-creation')">Add to Quote</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quote Column -->
+                <div class="col-lg-4">
+                    <div class="quote-section">
+                        <div class="quote-card" data-aos="fade-left" data-aos-delay="300">
+                            <h3><i class="fa fa-calculator"></i> Your Quote</h3>
+                            <div class="selected-services" id="selected-services">
+                                <p class="text-muted text-center">No services selected yet</p>
+                            </div>
+                            <div class="total-price" id="total-price">LKR 0</div>
+                            <button class="get-quote-btn" id="get-quote-btn" onclick="getQuote()" disabled>
+                                Get Detailed Quote
+                            </button>
+                            <div class="text-center mt-3">
+                                <small class="text-muted">* Prices are estimates. Final quote will be provided after consultation.</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services Section End -->
+
+    <!-- Footer Start -->
+    <footer>
+        <!-- Widgets Start -->
+        <div class="footer-widgets">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-xl-3">
+                        <div class="single-widget contact-widget" data-aos="fade-up" data-aos-delay="0">
+                            <h6 class="widget-tiltle">&nbsp;</h6>
+                            <p>By subscribing to our mailing list you will always be update with the latest news from
+                                us.
+                            </p>
+                            <div class="media">
+                                <i class="fa fa-map-marker"></i>
+                                <div class="media-body ml-3">
+                                    <h6>Address</h6>
+                                    Colombo,<br>
+                                    Sri Lanka
+                                </div>
+                            </div>
+                            <div class="media">
+                                <i class="fa fa-envelope-o"></i>
+                                <div class="media-body ml-3">
+                                    <h6>Have any questions?</h6>
+                                    <a href="mailto:rvnink.design@google.com">rvnink.design@google.com</a>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <i class="fa fa-phone"></i>
+                                <div class="media-body ml-3">
+                                    <h6>Call us & Hire us</h6>
+                                    <a href="tel:+94703393937"> +94 70 339 3937</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <div class="single-widget twitter-widget" data-aos="fade-up" data-aos-delay="200">
+                            <h6 class="widget-tiltle">Fresh Tweets</h6>
+                            <div class="media">
+                                <i class="fa fa-twitter"></i>
+                                <div class="media-body ml-3">
+                                    <h6><a href="#">@RVNINK,</a> Just completed an amazing brand identity project for a local startup! 🎨✨</h6>
+                                    <span>10 Mins Ago</span>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <i class="fa fa-twitter"></i>
+                                <div class="media-body ml-3">
+                                    <h6><a href="#">@DesignTips,</a> Color psychology in branding - choosing the right palette can make or break your brand! 🎨</h6>
+                                    <span>20 Mins Ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <div class="single-widget recent-post-widget" data-aos="fade-up" data-aos-delay="400">
+                            <h6 class="widget-tiltle">Latest Updates</h6>
+                            <div class="media">
+                                <a class="rcnt-img" href="#"><img src="assets/images/rcnt-post1.png"
+                                        alt="Recent Post"></a>
+                                <div class="media-body ml-3">
+                                    <h6><a href="#">New Logo Design Trends for 2024</a></h6>
+                                    <p><i class="fa fa-user"></i>Dilshan <i class="fa fa-eye"></i> 156 Views</p>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <a class="rcnt-img" href="#"><img src="assets/images/rcnt-post2.png"
+                                        alt="Recent Post"></a>
+                                <div class="media-body ml-3">
+                                    <h6><a href="#">Social Media Content Strategy Guide</a></h6>
+                                    <p><i class="fa fa-user"></i>Anuttara <i class="fa fa-eye"></i> 89 Views</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <div class="single-widget tags-widget" data-aos="fade-up" data-aos-delay="800">
+                            <h6 class="widget-tiltle">Popular Tags</h6>
+                            <a href="#">Design</a>
+                            <a href="#">Branding</a>
+                            <a href="#">Social Media</a>
+                            <a href="#">Web Design</a>
+                            <a href="#">Logo</a>
+                            <a href="#">Creative</a>
+                        </div>
+                        <div class="single-widget subscribe-widget" data-aos="fade-up" data-aos-delay="800">
+                            <h6 class="widget-tiltle">Subscribe us</h6>
+                            <p>Sign up for our mailing list to get latest updates and offers</p>
+                            <form class="" method="get">
+                                <div class="input-group">
+                                    <input class="field form-control" name="subscribe" type="email"
+                                        placeholder="Email Address">
+                                    <span class="input-group-btn">
+                                        <button type="submit" name="submit-mail"><i class="fa fa-check"></i></button>
+                                    </span>
+                                </div>
+                            </form>
+                            <p>We respect your privacy</p>
+                            <ul class="nav social-nav">
+                                <li><a href="https://www.instagram.com/rvnink" target="_blank"><i
+                                            class="fa fa-instagram"></i></a></li>
+                                <li><a href="https://wa.me/94703393937" target="_blank"><i
+                                            class="fa fa-whatsapp"></i></a></li>
+                                <li><a href="https://www.facebook.com/profile.php?id=61575806530578" target="_blank"><i
+                                            class="fa fa-facebook"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Widgets End -->
+        <!-- Foot Note Start -->
+        <div class="foot-note">
+            <div class="container">
+                <div
+                    class="footer-content text-center text-lg-left d-lg-flex justify-content-between align-items-center">
+                    <p class="mb-0" data-aos="fade-right" data-aos-offset="0">&copy; 2024 RVNINK. All Rights Reserved.
+                    </p>
+                    <p class="mb-0" data-aos="fade-left" data-aos-offset="0"><a href="terms.html">Terms Of Use</a><a
+                            href="privacy.html">Privacy & Security
+                            Statement</a></p>
+                </div>
+            </div>
+        </div>
+        <!-- Foot Note End -->
+    </footer>
+    <!-- Footer End -->
+
+    <!--jQuery-->
+    <script src="assets/js/jquery-3.3.1.js"></script>
+    <!--Plugins-->
+    <script src="assets/js/bootstrap.bundle.js"></script>
+    <script src="assets/js/loaders.css.js"></script>
+    <script src="assets/js/aos.js"></script>
+    <script src="assets/js/swiper.min.js"></script>
+    <script src="assets/js/lightgallery-all.min.js"></script>
+    <!--Template Script-->
+    <script src="assets/js/main.js"></script>
+
+    <!-- Shop Script -->
+    <script>
+        let selectedServices = {};
+        let totalPrice = 0;
+
+        function toggleService(serviceId) {
+            const card = document.querySelector(`[data-service="${serviceId}"]`);
+            const btn = card.querySelector('.select-btn');
+            const qtyInput = document.getElementById(`${serviceId}-qty`);
+            
+            if (selectedServices[serviceId]) {
+                // Remove service
+                delete selectedServices[serviceId];
+                card.classList.remove('selected');
+                btn.textContent = 'Add to Quote';
+                btn.classList.remove('selected');
+                qtyInput.value = 0;
+            } else {
+                // Add service
+                if (qtyInput.value > 0) {
+                    selectedServices[serviceId] = {
+                        name: card.querySelector('h4').textContent,
+                        price: parseInt(card.dataset.price),
+                        quantity: parseInt(qtyInput.value)
+                    };
+                    card.classList.add('selected');
+                    btn.textContent = 'Remove';
+                    btn.classList.add('selected');
+                } else {
+                    alert('Please select a quantity first');
+                    return;
+                }
+            }
+            
+            updateQuote();
+        }
+
+        function increaseQuantity(serviceId) {
+            const input = document.getElementById(`${serviceId}-qty`);
+            const currentValue = parseInt(input.value);
+            const maxValue = parseInt(input.getAttribute('max'));
+            
+            if (currentValue < maxValue) {
+                input.value = currentValue + 1;
+                updateServiceQuantity(serviceId);
+            }
+        }
+
+        function decreaseQuantity(serviceId) {
+            const input = document.getElementById(`${serviceId}-qty`);
+            const currentValue = parseInt(input.value);
+            
+            if (currentValue > 0) {
+                input.value = currentValue - 1;
+                updateServiceQuantity(serviceId);
+            }
+        }
+
+        function updateServiceQuantity(serviceId) {
+            const qtyInput = document.getElementById(`${serviceId}-qty`);
+            const quantity = parseInt(qtyInput.value);
+            
+            if (selectedServices[serviceId]) {
+                if (quantity === 0) {
+                    toggleService(serviceId);
+                } else {
+                    selectedServices[serviceId].quantity = quantity;
+                    updateQuote();
+                }
+            }
+        }
+
+        function updateQuote() {
+            const container = document.getElementById('selected-services');
+            const totalElement = document.getElementById('total-price');
+            const quoteBtn = document.getElementById('get-quote-btn');
+            
+            totalPrice = 0;
+            
+            if (Object.keys(selectedServices).length === 0) {
+                container.innerHTML = '<p class="text-muted text-center">No services selected yet</p>';
+                totalElement.textContent = 'LKR 0';
+                quoteBtn.disabled = true;
+                return;
+            }
+            
+            let html = '';
+            for (const [serviceId, service] of Object.entries(selectedServices)) {
+                const serviceTotal = service.price * service.quantity;
+                totalPrice += serviceTotal;
+                
+                html += `
+                    <div class="selected-service">
+                        <div>
+                            <strong>${service.name}</strong><br>
+                            <small>Qty: ${service.quantity} × LKR ${service.price.toLocaleString()}</small>
+                        </div>
+                        <div>
+                            <strong>LKR ${serviceTotal.toLocaleString()}</strong>
+                            <button class="remove-btn" onclick="removeService('${serviceId}')">×</button>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            container.innerHTML = html;
+            totalElement.textContent = `LKR ${totalPrice.toLocaleString()}`;
+            quoteBtn.disabled = false;
+        }
+
+        function removeService(serviceId) {
+            const card = document.querySelector(`[data-service="${serviceId}"]`);
+            const qtyInput = document.getElementById(`${serviceId}-qty`);
+            
+            delete selectedServices[serviceId];
+            card.classList.remove('selected');
+            card.querySelector('.select-btn').textContent = 'Add to Quote';
+            card.querySelector('.select-btn').classList.remove('selected');
+            qtyInput.value = 0;
+            
+            updateQuote();
+        }
+
+        function getQuote() {
+            if (totalPrice === 0) {
+                alert('Please select at least one service');
+                return;
+            }
+            
+            // Create quote summary
+            let quoteSummary = 'RVNINK Creative Services - Quote Summary\n\n';
+            quoteSummary += 'Selected Services:\n';
+            
+            for (const [serviceId, service] of Object.entries(selectedServices)) {
+                const serviceTotal = service.price * service.quantity;
+                quoteSummary += `• ${service.name} (Qty: ${service.quantity}) - LKR ${serviceTotal.toLocaleString()}\n`;
+            }
+            
+            quoteSummary += `\nTotal: LKR ${totalPrice.toLocaleString()}\n\n`;
+            quoteSummary += 'Contact Information:\n';
+            quoteSummary += 'Phone: +94 70 339 3937\n';
+            quoteSummary += 'Email: rvnink.design@google.com\n';
+            quoteSummary += 'WhatsApp: https://wa.me/94703393937\n\n';
+            quoteSummary += 'Note: This is an estimate. Final pricing will be confirmed after consultation.';
+            
+            // Open WhatsApp with quote
+            const whatsappMessage = encodeURIComponent(quoteSummary);
+            const whatsappUrl = `https://wa.me/94703393937?text=${whatsappMessage}`;
+            
+            // Also show alert with quote details
+            alert(`Quote Summary:\n\n${quoteSummary}\n\nOpening WhatsApp to send quote...`);
+            
+            // Open WhatsApp
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+    </script>
+</body>
+
+</html> 

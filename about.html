@@ -1,0 +1,894 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Document title -->
+    <title>About Us - RVNINK Creative Agency</title>
+    <!-- Stylesheets & Fonts -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i%7CRajdhani:400,600,700"
+        rel="stylesheet">
+    <!-- Plugins Stylesheets -->
+    <link rel="stylesheet" href="assets/css/loader/loaders.css">
+    <link rel="stylesheet" href="assets/css/font-awesome/font-awesome.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/aos/aos.css">
+    <link rel="stylesheet" href="assets/css/swiper/swiper.css">
+    <link rel="stylesheet" href="assets/css/lightgallery.min.css">
+    <!-- Template Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Responsive Stylesheet -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <!-- Custom About Styles -->
+    <style>
+        .about-hero {
+            background: linear-gradient(135deg, #26264b, #E34234);
+            padding: 120px 0 80px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("assets/images/hero-texture.png") no-repeat center;
+            background-size: cover;
+            opacity: 0.1;
+            animation: textureMove 20s linear infinite;
+        }
+
+        /* Fix for stretched images */
+        .featured-img {
+            position: relative;
+            height: auto;
+            min-height: 400px;
+            margin-top: 60px;
+        }
+
+        .featured-big {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .featured-small {
+            position: relative;
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            padding: 15px;
+        }
+
+        /* Team member image fixes */
+        .team-member img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 4px solid #E34234;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        /* Recent post image fixes */
+        .recent-post-widget .rcnt-img img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        /* Responsive image fixes */
+        @media (max-width: 768px) {
+            .featured-img {
+                min-height: 300px;
+                margin-top: 30px;
+            }
+            
+            .featured-big {
+                max-width: 100%;
+                margin-bottom: 15px;
+            }
+            
+            .featured-small {
+                max-width: 100%;
+            }
+            
+            .team-member img {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .featured-img {
+                min-height: 250px;
+                margin-top: 20px;
+            }
+            
+            .team-member img {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-member img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 4px solid #E34234;
+        }
+
+        .team-member h4 {
+            color: #26264b;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .team-member .position {
+            color: #E34234;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .team-member .bio {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .team-member .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .team-member .social-links a {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #E34234;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #E34234;
+            transition: all 0.3s ease;
+        }
+
+        .team-member .social-links a:hover {
+            background: #E34234;
+            color: white;
+        }
+
+        .stats-section {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: bold;
+            color: #E34234;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #26264b;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 60px 0;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #E34234;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            width: 45%;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: 0;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 55%;
+        }
+
+        .timeline-content::before {
+            content: "";
+            position: absolute;
+            top: 20px;
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -20px;
+            border-left-color: white;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -20px;
+            border-right-color: white;
+        }
+
+        .timeline-date {
+            color: #E34234;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .timeline-title {
+            color: #26264b;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .timeline-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .values-section {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+        }
+
+        .value-icon {
+            font-size: 48px;
+            color: #E34234;
+            margin-bottom: 20px;
+        }
+
+        .value-title {
+            color: #26264b;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .value-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .breadcrumb-nav {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 0;
+            margin-bottom: 40px;
+        }
+
+        .breadcrumb-nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .breadcrumb-nav a:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .breadcrumb-nav .separator {
+            color: rgba(255, 255, 255, 0.6);
+            margin: 0 10px;
+        }
+
+        .mission-vision {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+
+        .mission-card, .vision-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            height: 100%;
+        }
+
+        .mission-card h3, .vision-card h3 {
+            color: #E34234;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .mission-card p, .vision-card p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        @keyframes textureMove {
+            0% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(-5px) translateY(-3px); }
+            50% { transform: translateX(-3px) translateY(-5px); }
+            75% { transform: translateX(-5px) translateY(-3px); }
+            100% { transform: translateX(0) translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 50px);
+                margin-left: 50px !important;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::before,
+            .timeline-item:nth-child(even) .timeline-content::before {
+                left: -20px;
+                border-right-color: white;
+                border-left-color: transparent;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loader Start -->
+    <div class="css-loader">
+        <div class="loader-inner line-scale d-flex align-items-center justify-content-center"></div>
+    </div>
+    <!-- Loader End -->
+
+    <!-- Header Start -->
+    <header class="position-absolute w-100">
+        <div class="container">
+            <div class="top-header d-none d-sm-flex justify-content-between align-items-center">
+                <div class="contact">
+                    <a href="tel:+94703393937" class="tel"><i class="fa fa-phone" aria-hidden="true"></i>+94 70 339
+                        3937</a>
+                    <a href="mailto:rvnink.design@google.com"><i class="fa fa-envelope"
+                            aria-hidden="true"></i>rvnink.design@google.com</a>
+                </div>
+                <nav class="d-flex aic">
+                    <a href="#" class="login"><i class="fa fa-user" aria-hidden="true"></i>Login</a>
+                    <ul class="nav social d-none d-md-flex">
+                        <li><a href="https://www.facebook.com/profile.php?id=61575806530578" target="_blank"><i
+                                    class="fa fa-facebook"></i></a></li>
+                        <li><a href="mailto:rvnink.design@google.com"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
+            <nav class="navbar navbar-expand-md navbar-light">
+                <a class="navbar-brand" href="index.html"><img src="assets/images/logo.png" alt="RVNINK"></a>
+                <div class="group d-flex align-items-center">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation"><span
+                            class="navbar-toggler-icon"></span></button>
+                    <a class="login-icon d-sm-none" href="#"><i class="fa fa-user"></i></a>
+                    <a class="cart" href="#"><i class="fa fa-shopping-cart"></i></a>
+                </div>
+                <a class="search-icon d-none d-md-block" href="#"><i class="fa fa-search"></i></a>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="about.html">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://www.behance.net/rvnink" target="_blank">Portfolio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://linktr.ee/rvnink" target="_blank">Contact
+                                Us</a></li>
+                    </ul>
+                    <form class="bg-white search-form" method="get" id="searchform">
+                        <div class="input-group">
+                            <input class="field form-control" id="s" name="s" type="text" placeholder="Search">
+                            <span class="input-group-btn">
+                                <input class="submit btn btn-primary" id="searchsubmit" name="submit" type="submit"
+                                    value="Search">
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- About Hero Start -->
+    <section class="about-hero">
+        <div class="container">
+            <div class="breadcrumb-nav">
+                <a href="index.html">Home</a>
+                <span class="separator">/</span>
+                <span>About Us</span>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 data-aos="fade-up" data-aos-delay="200">About RVNINK</h1>
+                    <p data-aos="fade-up" data-aos-delay="400">We are a passionate team of creative thinkers dedicated to transforming brands through innovative design and strategic social media solutions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Hero End -->
+
+    <!-- Mission & Vision Start -->
+    <section class="mission-vision">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6" data-aos="fade-right" data-aos-delay="200">
+                    <div class="mission-card">
+                        <h3><i class="fa fa-bullseye"></i> Our Mission</h3>
+                        <p>To empower businesses with creative solutions that drive growth and success. We believe in the power of design to transform brands and create meaningful connections with audiences. Our mission is to deliver exceptional results that exceed expectations while maintaining the highest standards of creativity and professionalism.</p>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left" data-aos-delay="400">
+                    <div class="vision-card">
+                        <h3><i class="fa fa-eye"></i> Our Vision</h3>
+                        <p>To be the leading creative agency in Sri Lanka, recognized for innovative design solutions and exceptional social media strategies. We envision a future where every business has access to world-class creative services that help them thrive in the digital age.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Mission & Vision End -->
+
+    <!-- Our Story Start -->
+    <section class="featured">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6" data-aos="fade-right" data-aos-delay="400" data-aos-duration="800">
+                    <div class="title">
+                        <h6 class="title-primary">Our Story</h6>
+                        <h1 class="title-blue">We are a team of creative thinkers.</h1>
+                    </div>
+                    <p>Founded with a passion for creativity and innovation, RVNINK has grown from a small design studio to a comprehensive creative agency. We are passionate about helping businesses succeed through creative design and effective social media strategies. Our team is dedicated to delivering high-quality work that gets results.</p>
+                    <p>We believe in the power of design to transform brands and create meaningful connections between businesses and their audiences. Every project we undertake is approached with creativity, strategy, and attention to detail.</p>
+                </div>
+                <div class="col-md-6" data-aos="fade-left" data-aos-delay="400" data-aos-duration="800">
+                    <div class="featured-img">
+                        <img class="featured-big" src="assets/images/featured-img1.jpg" alt="Featured 1">
+                        <img class="featured-small" src="assets/images/featured-img2.jpg" alt="Featured 2">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Our Story End -->
+
+    <!-- Our Values Start -->
+    <section class="values-section">
+        <div class="container">
+            <div class="title text-center" data-aos="fade-up">
+                <h6 class="title-primary">Our Values</h6>
+                <h1 class="title-blue">What Drives Us Forward</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fa fa-lightbulb-o"></i>
+                        </div>
+                        <h4 class="value-title">Creativity</h4>
+                        <p class="value-description">We push boundaries and think outside the box to create innovative solutions that stand out in today's competitive market.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fa fa-users"></i>
+                        </div>
+                        <h4 class="value-title">Collaboration</h4>
+                        <p class="value-description">We believe in the power of teamwork and work closely with our clients to ensure their vision becomes reality.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <h4 class="value-title">Quality</h4>
+                        <p class="value-description">We maintain the highest standards in everything we do, from concept to final delivery.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fa fa-handshake-o"></i>
+                        </div>
+                        <h4 class="value-title">Integrity</h4>
+                        <p class="value-description">We build lasting relationships based on trust, transparency, and honest communication.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fa fa-rocket"></i>
+                        </div>
+                        <h4 class="value-title">Innovation</h4>
+                        <p class="value-description">We stay ahead of trends and embrace new technologies to deliver cutting-edge solutions.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fa fa-heart"></i>
+                        </div>
+                        <h4 class="value-title">Passion</h4>
+                        <p class="value-description">We are passionate about what we do and it shows in every project we deliver.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Our Values End -->
+
+    <!-- Our Team Start -->
+    <section class="featured">
+        <div class="container">
+            <div class="title text-center" data-aos="fade-up">
+                <h6 class="title-primary">Meet Our Team</h6>
+                <h1 class="title-blue">The Creative Minds Behind RVNINK</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="team-member">
+                        <img src="assets/images/test1.png" alt="Dilshan">
+                        <h4>Dilshan</h4>
+                        <div class="position">Founder & Lead Designer</div>
+                        <p class="bio">As the founder and lead designer, I pour my passion for creative vision and design expertise into transforming brands' visual identities. My commitment to quality and attention to detail are at the heart of everything I create. I am dedicated to elevating your brand's design.</p>
+                        <div class="social-links">
+                            <a href="https://www.behance.net/rvnink" target="_blank"><i class="fa fa-behance"></i></a>
+                            <a href="https://www.instagram.com/rvnink" target="_blank"><i class="fa fa-instagram"></i></a>
+                            <a href="https://wa.me/94703393937" target="_blank"><i class="fa fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="team-member">
+                        <img src="assets/images/test2.png" alt="Anuttara">
+                        <h4>Anuttara</h4>
+                        <div class="position">Content Manager</div>
+                        <p class="bio">As our Content Manager, Anuttara expertly manages our social media presence and ensures seamless client coordination, making every collaboration a success. Her organizational skills are the backbone of our projects.</p>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/rvnink" target="_blank"><i class="fa fa-instagram"></i></a>
+                            <a href="https://wa.me/94703393937" target="_blank"><i class="fa fa-whatsapp"></i></a>
+                            <a href="mailto:rvnink.design@google.com"><i class="fa fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Our Team End -->
+
+    <!-- Stats Section Start -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stat-item">
+                        <div class="stat-number">30+</div>
+                        <div class="stat-label">Happy Clients</div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="600">
+                    <div class="stat-item">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="800">
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Client Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Stats Section End -->
+
+    <!-- Our Journey Start -->
+    <section class="featured">
+        <div class="container">
+            <div class="title text-center" data-aos="fade-up">
+                <h6 class="title-primary">Our Journey</h6>
+                <h1 class="title-blue">Milestones That Define Us</h1>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2020-2024</div>
+                        <h4 class="timeline-title">Freelance Journey</h4>
+                        <p class="timeline-description">Started as a freelance graphic designer, building experience and client relationships through individual projects and creative work.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025</div>
+                        <h4 class="timeline-title">RVNINK Founded</h4>
+                        <p class="timeline-description">Established RVNINK as a creative agency, expanding from freelance work to comprehensive design and social media services.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="600">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025+</div>
+                        <h4 class="timeline-title">Growth & Innovation</h4>
+                        <p class="timeline-description">Launched our online shop platform and introduced advanced services including UI/UX design and comprehensive brand solutions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Our Journey End -->
+
+    <!-- What We Offer Start -->
+    <section class="featured">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" data-aos="fade-up" data-aos-delay="400" data-aos-duration="800">
+                    <div class="title">
+                        <h6 class="title-primary">WHAT WE OFFER</h6>
+                        <h1 class="title-blue">We provide a wide range of creative services to help your business grow.
+                        </h1>
+                    </div>
+                    <div class="media-element d-flex justify-content-between">
+                        <div class="media">
+                            <i class="fa fa-magic mr-4"></i>
+                            <div class="media-body">
+                                <h5>Creative Design</h5>
+                                We craft visually stunning designs that capture your brand's essence.
+                            </div>
+                        </div>
+                        <div class="media">
+                            <i class="fa fa-bullhorn mr-4"></i>
+                            <div class="media-body">
+                                <h5>Social Media</h5>
+                                We manage your social media presence to engage and grow your audience.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- What We Offer End -->
+
+    <!-- Why Choose Us Start -->
+    <section class="featured">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" data-aos="fade-up" data-aos-delay="400" data-aos-duration="800">
+                    <div class="title">
+                        <h6 class="title-primary">WHY CHOOSE US?</h6>
+                        <h1 class="title-blue">We are dedicated to your success.</h1>
+                    </div>
+                    <p>Our team is committed to delivering exceptional results that exceed your expectations. We take
+                        the time to understand your business and create customized solutions that drive growth and
+                        success.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Why Choose Us End -->
+
+    <!-- Footer Start -->
+    <footer>
+        <!-- Widgets Start -->
+        <div class="footer-widgets">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-xl-3">
+                        <div class="single-widget contact-widget" data-aos="fade-up" data-aos-delay="0">
+                            <h6 class="widget-tiltle">&nbsp;</h6>
+                            <p>By subscribing to our mailing list you will always be update with the latest news from
+                                us.
+                            </p>
+                            <div class="media">
+                                <i class="fa fa-map-marker"></i>
+                                <div class="media-body ml-3">
+                                    <h6>Address</h6>
+                                    Colombo,<br>
+                                    Sri Lanka
+                                </div>
+                            </div>
+                            <div class="media">
+                                <i class="fa fa-envelope-o"></i>
+                                <div class="media-body ml-3">
+                                    <h6>Have any questions?</h6>
+                                    <a href="mailto:rvnink.design@google.com">rvnink.design@google.com</a>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <i class="fa fa-phone"></i>
+                                <div class="media-body ml-3">
+                                    <h6>Call us & Hire us</h6>
+                                    <a href="tel:+94703393937"> +94 70 339 3937</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <div class="single-widget twitter-widget" data-aos="fade-up" data-aos-delay="200">
+                            <h6 class="widget-tiltle">Fresh Tweets</h6>
+                            <div class="media">
+                                <i class="fa fa-twitter"></i>
+                                <div class="media-body ml-3">
+                                    <h6><a href="#">@RVNINK,</a> Just completed an amazing brand identity project for a local startup! 🎨✨</h6>
+                                    <span>10 Mins Ago</span>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <i class="fa fa-twitter"></i>
+                                <div class="media-body ml-3">
+                                    <h6><a href="#">@DesignTips,</a> Color psychology in branding - choosing the right palette can make or break your brand! 🎨</h6>
+                                    <span>20 Mins Ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <div class="single-widget recent-post-widget" data-aos="fade-up" data-aos-delay="400">
+                            <h6 class="widget-tiltle">Latest Updates</h6>
+                            <div class="media">
+                                <a class="rcnt-img" href="#"><img src="assets/images/rcnt-post1.png"
+                                        alt="Recent Post"></a>
+                                <div class="media-body ml-3">
+                                    <h6><a href="#">New Logo Design Trends for 2024</a></h6>
+                                    <p><i class="fa fa-user"></i>Dilshan <i class="fa fa-eye"></i> 156 Views</p>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <a class="rcnt-img" href="#"><img src="assets/images/rcnt-post2.png"
+                                        alt="Recent Post"></a>
+                                <div class="media-body ml-3">
+                                    <h6><a href="#">Social Media Content Strategy Guide</a></h6>
+                                    <p><i class="fa fa-user"></i>Anuttara <i class="fa fa-eye"></i> 89 Views</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <div class="single-widget tags-widget" data-aos="fade-up" data-aos-delay="800">
+                            <h6 class="widget-tiltle">Popular Tags</h6>
+                            <a href="#">Design</a>
+                            <a href="#">Branding</a>
+                            <a href="#">Social Media</a>
+                            <a href="#">Web Design</a>
+                            <a href="#">Logo</a>
+                            <a href="#">Creative</a>
+                        </div>
+                        <div class="single-widget subscribe-widget" data-aos="fade-up" data-aos-delay="800">
+                            <h6 class="widget-tiltle">Subscribe us</h6>
+                            <p>Sign up for our mailing list to get latest updates and offers</p>
+                            <form class="" method="get">
+                                <div class="input-group">
+                                    <input class="field form-control" name="subscribe" type="email"
+                                        placeholder="Email Address">
+                                    <span class="input-group-btn">
+                                        <button type="submit" name="submit-mail"><i class="fa fa-check"></i></button>
+                                    </span>
+                                </div>
+                            </form>
+                            <p>We respect your privacy</p>
+                            <ul class="nav social-nav">
+                                <li><a href="https://www.instagram.com/rvnink" target="_blank"><i
+                                            class="fa fa-instagram"></i></a></li>
+                                <li><a href="https://wa.me/94703393937" target="_blank"><i
+                                            class="fa fa-whatsapp"></i></a></li>
+                                <li><a href="https://www.facebook.com/profile.php?id=61575806530578" target="_blank"><i
+                                            class="fa fa-facebook"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Widgets End -->
+        <!-- Foot Note Start -->
+        <div class="foot-note">
+            <div class="container">
+                <div
+                    class="footer-content text-center text-lg-left d-lg-flex justify-content-between align-items-center">
+                    <p class="mb-0" data-aos="fade-right" data-aos-offset="0">&copy; 2024 RVNINK. All Rights Reserved.
+                    </p>
+                    <p class="mb-0" data-aos="fade-left" data-aos-offset="0"><a href="terms.html">Terms Of Use</a><a
+                            href="privacy.html">Privacy & Security
+                            Statement</a></p>
+                </div>
+            </div>
+        </div>
+        <!-- Foot Note End -->
+    </footer>
+    <!-- Footer End -->
+
+    <!--jQuery-->
+    <script src="assets/js/jquery-3.3.1.js"></script>
+    <!--Plugins-->
+    <script src="assets/js/bootstrap.bundle.js"></script>
+    <script src="assets/js/loaders.css.js"></script>
+    <script src="assets/js/aos.js"></script>
+    <script src="assets/js/swiper.min.js"></script>
+    <script src="assets/js/lightgallery-all.min.js"></script>
+    <!--Template Script-->
+    <script src="assets/js/main.js"></script>
+
+    <!-- About Script -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+    </script>
+</body>
+
+</html> 
